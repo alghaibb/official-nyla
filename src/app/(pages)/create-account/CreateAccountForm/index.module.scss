@@ -4,19 +4,64 @@
   margin-bottom: var(--base);
   display: flex;
   flex-direction: column;
-  gap: calc(var(--base) / 2);
+  gap: 24px;
+  margin-top: 30px;
   align-items: flex-start;
-  width: 66.66%;
-
-  @include mid-break {
-    width: 100%;
-  }
+  width: 100%;
 }
 
 .submit {
-  margin-top: calc(var(--base) / 2);
+  margin-top: var(--base);
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submit:hover {
+  background-color: #27272a;
 }
 
 .message {
   margin-bottom: var(--base);
+}
+
+.loginLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  width: 100%;
+  color: #71717a;
+  font-size: 16px;
+ 
+  a {
+    text-decoration: underline;
+    color: #18181b;
+  }
+}
+
+.passwordInput {
+  width: 100%;
+  position: relative;
+}
+
+.confirmPasswordInput {
+  width: 100%;
+  position: relative;
+}
+
+.showHidePassword {
+  position: absolute;
+  right: 10px;
+  top: 65%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #71717a;
+  transition: color 0.2s ease-in-out;
+}
+
+.showHidePassword:hover {
+  color: #18181b;
 }
