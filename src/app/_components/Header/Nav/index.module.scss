@@ -4,6 +4,7 @@
   display: flex;
   gap: calc(var(--base) / 4) var(--base);
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   opacity: 1;
   transition: opacity 100ms linear;
@@ -18,3 +19,37 @@
   opacity: 0;
   visibility: hidden;
 }
+
+.navLinks {
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000000;
+    transition: width 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &:focus::after {
+    width: 100%;
+  }
+}
+
+@include small-break {
+  .navLinks {
+    display: none;
+  }
+}
+
