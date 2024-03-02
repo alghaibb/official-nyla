@@ -1,23 +1,87 @@
 @import "../../../_css/common";
 
-.error {
-  color: red;
-  margin-bottom: 15px;
+.form {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.recoverPasswordTitle {
+  font-size: 28px;
+  text-transform: uppercase;
+  line-height: 24px;
+  text-align: center;
+
+  @include small-break {
+    font-size: 24px;
+  }
 }
 
 .formWrapper {
-  width: 66.66%;
+  padding: 20px; 
+  width: 60%; 
+  margin: auto;
 
-  @include mid-break {
-    width: 100%;
+  @include large-break {
+    width: 80%; 
+  }
+
+  @include small-break {
+    padding: 20px; 
+    width: 100%; 
+  }
+}
+
+.requestSuccess {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
+
+  @include small-break {
+    font-size: 24px;
+  }
+}
+
+.checkEmailText {
+  text-align: center;
+  margin-top: 10px;
+
+  @include small-break {
+    margin-top: 4px;
   }
 }
 
 .submit {
-  margin-top: var(--base);
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submit:hover {
+  background-color: #27272a;
 }
 
 .message {
   margin-bottom: var(--base);
 }
 
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.resetPasswordTopMessage {
+  text-align: center;
+  color: #71717a;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  @include small-break {
+    margin-bottom: 0;
+  }
+}
