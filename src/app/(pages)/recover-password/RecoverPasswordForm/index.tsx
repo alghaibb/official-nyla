@@ -50,14 +50,11 @@ export const RecoverPasswordForm: React.FC = () => {
     <Fragment>
       {!success && (
         <React.Fragment>
-          <h1>Recover Password</h1>
+          <h1 className={classes.recoverPasswordTitle}>Recover Password</h1>
+          <p className={classes.resetPasswordTopMessage}>
+            Enter your registered email, we'll send you a link to reset your password.
+          </p>
           <div className={classes.formWrapper}>
-            <p>
-              {`Please enter your email below. You will receive an email message with instructions on
-              how to reset your password. To manage your all users, `}
-              <Link href="/admin/collections/users">login to the admin dashboard</Link>
-              {'.'}
-            </p>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
               <Message error={error} className={classes.message} />
               <Input
@@ -80,8 +77,10 @@ export const RecoverPasswordForm: React.FC = () => {
       )}
       {success && (
         <React.Fragment>
-          <h1>Request submitted</h1>
-          <p>Check your email for a link that will allow you to securely reset your password.</p>
+          <h1 className={classes.requestSuccess}>Request submitted</h1>
+          <p className={classes.checkEmailText}>
+            Check your email for a link that will allow you to securely reset your password.
+          </p>
         </React.Fragment>
       )}
     </Fragment>
