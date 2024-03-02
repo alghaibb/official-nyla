@@ -2,6 +2,7 @@
 
 import React, { useCallback, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -13,6 +14,7 @@ import { useAuth } from '../../../_providers/Auth'
 import classes from './index.module.scss'
 
 type FormData = {
+  fullName: string
   email: string
   password: string
   passwordConfirm: string
@@ -25,6 +27,7 @@ const CreateAccountForm: React.FC = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   const {
     register,
@@ -62,7 +65,8 @@ const CreateAccountForm: React.FC = () => {
         await login(data)
         clearTimeout(timer)
         if (redirect) router.push(redirect as string)
-        else router.push(`/account?success=${encodeURIComponent('Account created successfully')}`)
+        else router.push(`/`)
+        window.location.href = '/'
       } catch (_) {
         clearTimeout(timer)
         setError('There was an error with the credentials provided. Please try again.')
@@ -71,14 +75,19 @@ const CreateAccountForm: React.FC = () => {
     [login, router, searchParams],
   )
 
+  const togglePasswordVisibility = () => setShowPassword(!showPassword)
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <p>
-        {`This is where new customers can signup and create a new account. To manage all users, `}
-        <Link href="/admin/collections/users">login to the admin dashboard</Link>
-        {'.'}
-      </p>
       <Message error={error} className={classes.message} />
+      <Input
+        name="fullName"
+        label="Full Name"
+        required
+        register={register}
+        error={errors.email}
+        type="text"
+      />
       <Input
         name="email"
         label="Email Address"
@@ -87,23 +96,41 @@ const CreateAccountForm: React.FC = () => {
         error={errors.email}
         type="email"
       />
-      <Input
-        name="password"
-        type="password"
-        label="Password"
-        required
-        register={register}
-        error={errors.password}
-      />
-      <Input
-        name="passwordConfirm"
-        type="password"
-        label="Confirm Password"
-        required
-        register={register}
-        validate={value => value === password.current || 'The passwords do not match'}
-        error={errors.passwordConfirm}
-      />
+      <div className={classes.passwordInput}>
+        <Input
+          name="password"
+          type={showPassword ? 'text' : 'password'}
+          label="Password"
+          required
+          register={register}
+          error={errors.password}
+        />
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className={classes.showHidePassword}
+        >
+          {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+        </button>
+      </div>
+      <div className={classes.confirmPasswordInput}>
+        <Input
+          name="passwordConfirm"
+          type={showPassword ? 'text' : 'password'}
+          label="Confirm Password"
+          required
+          register={register}
+          validate={value => value === password.current || 'The passwords do not match'}
+          error={errors.passwordConfirm}
+        />
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          className={classes.showHidePassword}
+        >
+          {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+        </button>
+      </div>
       <Button
         type="submit"
         label={loading ? 'Processing' : 'Create Account'}
@@ -111,7 +138,7 @@ const CreateAccountForm: React.FC = () => {
         appearance="primary"
         className={classes.submit}
       />
-      <div>
+      <div className={classes.loginLink}>
         {'Already have an account? '}
         <Link href={`/login${allParams}`}>Login</Link>
       </div>

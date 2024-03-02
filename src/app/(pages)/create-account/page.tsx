@@ -1,7 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
 
-import { Gutter } from '../../_components/Gutter'
 import { RenderParams } from '../../_components/RenderParams'
 import { getMeUser } from '../../_utilities/getMeUser'
 import { mergeOpenGraph } from '../../_utilities/mergeOpenGraph'
@@ -17,11 +16,17 @@ export default async function CreateAccount() {
   })
 
   return (
-    <Gutter className={classes.createAccount}>
-      <h1>Create Account</h1>
-      <RenderParams />
-      <CreateAccountForm />
-    </Gutter>
+    <section className={classes.createAccount}>
+      <div className={classes.formWrapper}>
+        <div className={classes.formContainer}>
+          <RenderParams className={classes.params} />
+          <div className={classes.formTitle}>
+            <h3>Create Account</h3>
+          </div>
+          <CreateAccountForm />
+        </div>
+      </div>
+    </section>
   )
 }
 
