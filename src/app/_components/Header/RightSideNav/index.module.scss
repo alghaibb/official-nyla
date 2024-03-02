@@ -1,0 +1,33 @@
+@use '../../../_css/queries.scss' as *;
+
+.rightSideNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.userIcon {
+  transition: opacity 0.1s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.profileIcon {
+  transition: opacity 0.1s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.shoppingBagIcon {
+  transition: opacity 0.1s ease-in-out;
+  margin-left: 14px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
