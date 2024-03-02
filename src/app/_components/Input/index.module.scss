@@ -7,19 +7,18 @@
 .input {
   width: 100%;
   font-family: system-ui;
-  border-radius: 0;
+  border-radius: 10px;
   box-shadow: none;
   border: none;
   background: none;
   background-color: var(--theme-elevation-100);
   color: var(--theme-elevation-1000);
-  height: calc(var(--base) * 2);
+  height: 52px;
   line-height: calc(var(--base) * 2);
-  padding: 0 calc(var(--base) / 2);
-  font-size: inherit;
+  padding: 16px;
+  font-size: 16px;
 
   &:focus {
-    border: none;
     outline: none;
   }
 
@@ -31,6 +30,15 @@
     transition: background-color 5000s ease-in-out 0s;
   }
 }
+
+.input:hover {
+  border: 1px solid #a1a1aa;
+}
+
+.input:focus {
+  border: 1px solid #27272a;
+}
+
 
 .asterisk {
   color: var(--color-error-500);
@@ -51,6 +59,8 @@
   display: block;
   line-height: 1;
   margin-bottom: calc(var(--base) / 2);
+  text-align: start;
+  font-size: 12px;
 }
 
 .errorMessage {
