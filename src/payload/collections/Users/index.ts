@@ -29,16 +29,7 @@ const Users: CollectionConfig = {
     beforeChange: [createStripeCustomer],
     afterChange: [loginAfterCreate],
   },
-  auth: {
-    verify: {
-      generateEmailHTML: ({ req, token, user }) => {
-        // Use the token provided to allow your user to verify their account
-        const url = `https://nyla.payloadcms.app/verify?token=${token}`
-
-        return `Hey ${user.name}, verify your email by clicking here: ${url}`
-      },
-    },
-  },
+  auth: true,
   endpoints: [
     {
       path: '/:teamID/customer',
