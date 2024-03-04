@@ -527,7 +527,6 @@ export interface Header {
   navItems?:
     | {
         link: {
-          href: string;
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?: {

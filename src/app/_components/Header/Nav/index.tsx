@@ -15,7 +15,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   return (
     <nav className={[classes.nav, user === undefined && classes.hide].filter(Boolean).join(' ')}>
       {navItems.map((navItem, i) => {
-        const key = navItem.link.href || `nav-item-${i}`
+        const key = navItem.link.url || `nav-item-${i}`
         return (
           <div key={key} className={classes.navLinks}>
             <CMSLink {...navItem.link} />

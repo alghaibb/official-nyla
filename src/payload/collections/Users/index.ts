@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../../access/admins'
@@ -30,16 +31,11 @@ const Users: CollectionConfig = {
   },
   auth: {
     verify: {
-      generateEmailHTML: ({ token, user }) => {
-        const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`
+      generateEmailHTML: ({ req, token, user }) => {
+        // Use the token provided to allow your user to verify their account
+        const url = `https://nyla.payloadcms.app/verify?token=${token}`
 
-        return `
-          <div>
-            <p>Hi ${user.name},</p>
-            <p>Click the link below to verify your email address:</p>
-            <a href="${url}">${url}</a>
-          </div>
-        `
+        return `Hey ${user.name}, verify your email by clicking here: ${url}`
       },
     },
   },
