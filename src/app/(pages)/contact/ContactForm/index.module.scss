@@ -1,0 +1,58 @@
+@import "../../../_css/common";
+
+.contactForm {
+  margin-bottom: var(--base);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 30px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.submit {
+  margin-top: var(--base);
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submit:hover {
+  background-color: #27272a;
+}
+
+.message {
+  margin-bottom: var(--base);
+}
+
+.successMessage {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+
+  @include small-break {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 30px;
+  }
+}
+
+.contactInputRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+}
+
+.loadingSpinnerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonWrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+
+
