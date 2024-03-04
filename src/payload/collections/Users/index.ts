@@ -28,7 +28,21 @@ const Users: CollectionConfig = {
     beforeChange: [createStripeCustomer],
     afterChange: [loginAfterCreate],
   },
-  auth: true,
+  auth: {
+    verify: {
+      generateEmailHTML: ({ token, user }) => {
+        const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`
+
+        return `
+          <div>
+            <p>Hi ${user.name},</p>
+            <p>Click the link below to verify your email address:</p>
+            <a href="${url}">${url}</a>
+          </div>
+        `
+      },
+    },
+  },
   endpoints: [
     {
       path: '/:teamID/customer',
