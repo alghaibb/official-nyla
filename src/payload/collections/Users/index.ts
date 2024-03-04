@@ -29,21 +29,7 @@ const Users: CollectionConfig = {
     beforeChange: [createStripeCustomer],
     afterChange: [loginAfterCreate],
   },
-  auth: {
-    verify: {
-      generateEmailHTML: ({ req, token, user }) => {
-        const url = `https://nyla.payloadcms.app/verify?token=${token}`
-
-        return `
-          <p>Hi ${user.name},</p>
-          <p>Thanks for signing up to Nyla!</p>
-          <p>Click the link below to verify your email address:</p>
-          <a href="${url}">${url}</a>
-          <p>If you didn't sign up to Nyla, you can ignore this email.</p>
-        `
-      },
-    },
-  },
+  auth: true,
   endpoints: [
     {
       path: '/:teamID/customer',

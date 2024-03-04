@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import next from 'next'
 import nextBuild from 'next/dist/build'
-import nodemailer from 'nodemailer'
 import path from 'path'
 
 dotenv.config({
@@ -17,23 +16,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 const start = async (): Promise<void> => {
-  const transport = await nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  })
-
   await payload.init({
     secret: process.env.PAYLOAD_SECRET || '',
     express: app,
-    email: {
-      fromName: 'Nyla',
-      fromAddress: process.env.GMAIL_USER,
-      transport,
-      logMockCredentials: true,
-    },
     onInit: () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
