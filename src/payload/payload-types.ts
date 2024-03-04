@@ -26,6 +26,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    'contact-form-submission': ContactFormSubmission;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -445,9 +446,26 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-form-submission".
+ */
+export interface ContactFormSubmission {
+  id: string;
+  orderId?: string | null;
+  name?: string | null;
+  email?: string | null;
+  subject?: string | null;
+  message?: string | null;
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
