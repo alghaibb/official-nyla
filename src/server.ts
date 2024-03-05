@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import next from 'next'
 import nextBuild from 'next/dist/build'
+import nodemailer from 'nodemailer'
 import path from 'path'
 
 dotenv.config({
@@ -16,7 +17,21 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 const start = async (): Promise<void> => {
+  const transport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  })
+
   await payload.init({
+    email: {
+      fromName: 'Nyla',
+      fromAddress: 'csnylaofficial@gmail.com',
+      transport,
+    },
+
     secret: process.env.PAYLOAD_SECRET || '',
     express: app,
     onInit: () => {

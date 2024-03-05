@@ -8,7 +8,7 @@ import { checkRole } from './checkRole'
 import { customerProxy } from './endpoints/customer'
 import { createStripeCustomer } from './hooks/createStripeCustomer'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
-import { loginAfterCreate } from './hooks/loginAfterCreate'
+// import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { resolveDuplicatePurchases } from './hooks/resolveDuplicatePurchases'
 import { CustomerSelect } from './ui/CustomerSelect'
 
@@ -27,9 +27,85 @@ const Users: CollectionConfig = {
   },
   hooks: {
     beforeChange: [createStripeCustomer],
-    afterChange: [loginAfterCreate],
+    // afterChange: [loginAfterCreate],
   },
-  auth: true,
+  auth: {
+    tokenExpiration: 604800,
+    verify: {
+      generateEmailHTML: ({ token, user }) => {
+        const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`
+
+        return `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+          <style>
+              body {
+                  font-family: 'Jost', sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                  background-color: #F4F4F5;
+                  color: #18181B;
+              }
+              .email-container {
+                  max-width: 600px;
+                  margin: 40px auto;
+                  padding: 20px;
+                  background-color: #FFFFFF;
+                  border-radius: 8px;
+                  text-align: center;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+              }
+              .email-header {
+                  font-size: 28px;
+                  color: #18181B;
+                  margin-bottom: 20px;
+              }
+              .email-content {
+                  font-size: 16px;
+                  line-height: 1.5;
+                  margin-bottom: 30px;
+              }
+              .pTags {
+                color: #18181B;
+              }
+              .nylaTitle {
+                text-transform: uppercase;
+              }              
+              @media (max-width: 600px) {
+                  .email-header {
+                      font-size: 24px;
+                  }
+                  .verify-button {
+                      padding: 10px 20px;
+                  }
+              }
+          </style>
+        </head>
+        <body>
+            <div class="email-container">
+                <h1 class="email-header">Welcome to <span class="nylaTitle">Nyla</span></h1>
+                <div class="email-content">
+                    <p class="pTags">Hi ${user.name},</p>
+                    <p class="pTags">Thank you for signing up. Please verify your email address to complete your registration and start exploring Nyla.</p>
+                    <a href="${url}" style="display: inline-block; background-color: #18181B; color: #F4F4F5 !important; padding: 15px 30px; font-size: 16px; border-radius: 10px; text-decoration: none; margin-top: 20px;" class="verify-button">Verify Email</a>
+                    <p class="pTags" style="margin-top: 20px;">If you did not sign up for Nyla, you can ignore this email</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        `
+      },
+    },
+    maxLoginAttempts: 5,
+    lockTime: 600 * 1000,
+  },
   endpoints: [
     {
       path: '/:teamID/customer',
