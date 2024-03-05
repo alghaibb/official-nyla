@@ -20,15 +20,19 @@ const start = async (): Promise<void> => {
   const transport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
+      type: 'OAuth2',
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN,
     },
   })
 
   await payload.init({
     email: {
       fromName: 'Nyla',
-      fromAddress: 'csnylaofficial@gmail.com',
+      fromAddress: process.env.EMAIL_USER,
       transport,
     },
 
