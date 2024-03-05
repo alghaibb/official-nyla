@@ -29,10 +29,11 @@ const start = async (): Promise<void> => {
     },
   })
 
+  console.log('Email User:', process.env.EMAIL_USER)
   await payload.init({
     email: {
       fromName: 'Nyla',
-      fromAddress: process.env.EMAIL_USER,
+      fromAddress: 'csnylaofficial@gmail.com',
       transport,
     },
 
