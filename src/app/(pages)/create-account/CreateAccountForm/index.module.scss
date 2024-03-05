@@ -65,3 +65,25 @@
 .showHidePassword:hover {
   color: #18181b;
 }
+
+.loadingSpinnerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.buttonWrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.toastContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
