@@ -20,8 +20,6 @@ type Create = (args: {
   passwordConfirm: string
 }) => Promise<void> // eslint-disable-line no-unused-vars
 
-type Verify = (args: { token: string }) => Promise<void> // eslint-disable-line no-unused-vars
-
 type Login = (args: { email: string; password: string }) => Promise<User> // eslint-disable-line no-unused-vars
 
 type Logout = () => Promise<void>
@@ -34,7 +32,6 @@ type AuthContext = {
   create: Create
   resetPassword: ResetPassword
   forgotPassword: ForgotPassword
-  Verify: Verify
   status: undefined | 'loggedOut' | 'loggedIn'
 }
 
@@ -59,32 +56,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           email: args.email,
           password: args.password,
           passwordConfirm: args.passwordConfirm,
-        }),
-      })
-
-      if (res.ok) {
-        const { data, errors } = await res.json()
-        if (errors) throw new Error(errors[0].message)
-        setUser(data?.loginUser?.user)
-        setStatus('loggedIn')
-      } else {
-        throw new Error('Invalid login')
-      }
-    } catch (e) {
-      throw new Error('An error occurred while attempting to login.')
-    }
-  }, [])
-
-  const Verify = useCallback<Verify>(async args => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/verify`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token: args.token,
         }),
       })
 
@@ -240,7 +211,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         create,
         resetPassword,
         forgotPassword,
-        Verify,
         status,
       }}
     >
