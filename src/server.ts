@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implicit-any-catch */
 import dotenv from 'dotenv'
 import next from 'next'
 import nextBuild from 'next/dist/build'
@@ -29,11 +30,10 @@ const start = async (): Promise<void> => {
     },
   })
 
-  console.log('Email User:', process.env.EMAIL_USER)
   await payload.init({
     email: {
       fromName: 'Nyla',
-      fromAddress: 'csnylaofficial@gmail.com',
+      fromAddress: process.env.EMAIL_USER,
       transport,
     },
 
@@ -42,6 +42,31 @@ const start = async (): Promise<void> => {
     onInit: () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
+  })
+
+  // Add a dynamic email verification endpoint
+  app.get('/verify', async (req, res) => {
+    // Extract the token from query parameters
+    const { token } = req.query
+
+    if (!token || typeof token !== 'string') {
+      return res.status(400).send('Verification token is required.')
+    }
+
+    try {
+      // Dynamically verify the email with the provided token
+      await payload.verifyEmail({
+        collection: 'users',
+        token: token,
+      })
+
+      // Redirect to a success page on your frontend
+      res.redirect(`${process.env.NEXT_PUBLIC_SERVER_URL}/verification-success`)
+    } catch (error) {
+      console.error('Verification error:', error)
+      // Redirect to a failure page
+      res.redirect(`${process.env.NEXT_PUBLIC_SERVER_URL}/verification-failed`)
+    }
   })
 
   if (process.env.PAYLOAD_SEED === 'true') {
