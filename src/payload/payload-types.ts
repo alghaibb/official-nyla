@@ -212,6 +212,7 @@ export interface Category {
 export interface Product {
   id: string;
   title: string;
+  isNewArrival?: boolean | null;
   publishedOn?: string | null;
   layout: (
     | {
