@@ -95,7 +95,7 @@ const Users: CollectionConfig = {
                 <div class="email-content">
                     <p class="pTags">Hi ${user.name},</p>
                     <p class="pTags">Thank you for signing up. Please verify your email address to complete your registration and start exploring Nyla.</p>
-                    <a href="${url}" style="display: inline-block; background-color: #18181B; color: #F4F4F5 !important; padding: 15px 30px; font-size: 16px; border-radius: 10px; text-decoration: none; margin-top: 20px;" class="verify-button">Verify Email</a>
+                    <a href="${url}" style="display: inline-block; background-color: #18181B; color: #F4F4F5 !important; padding: 15px 30px; font-size: 16px; border-radius: 10px; text-decoration: none; margin-top: 20px;" class="verify-button" target="_blank" rel="noopener noreferrer">Verify Email</a>
                     <p class="pTags" style="margin-top: 20px;">If you did not sign up for Nyla, you can ignore this email</p>
                 </div>
             </div>
