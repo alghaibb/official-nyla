@@ -11,7 +11,7 @@ export const inclusions = [
   },
   {
     title: 'Online Support',
-    description: 'Excellent support to address your requirements and questions.',
+    description: 'Excellent support to address your requirements and questions',
     icon: '/assets/icons/support.svg',
   },
   {

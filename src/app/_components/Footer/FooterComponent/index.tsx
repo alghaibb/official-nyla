@@ -80,17 +80,11 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             <div className={classes.footerRight}>
               <h5 className={classes.footerRightTitle}>Follow Us</h5>
               <div className={classes.socials}>
-                <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                  <FaFacebook width={24} height={24} className={classes.socialIcon} />
-                </Link>
                 <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                   <FaInstagram width={24} height={24} className={classes.socialIcon} />
                 </Link>
                 <Link href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
                   <FaTiktok width={24} height={24} className={classes.socialIcon} />
-                </Link>
-                <Link href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                  <FaTwitter width={24} height={24} className={classes.socialIcon} />
                 </Link>
               </div>
             </div>

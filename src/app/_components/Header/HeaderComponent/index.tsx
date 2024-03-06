@@ -106,11 +106,8 @@ const HeaderComponent = ({ header }: { header: Header }) => {
                 <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                   Instagram
                 </Link>
-                <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                  Facebook
-                </Link>
-                <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                  Twitter
+                <Link href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
+                  Tiktok
                 </Link>
                 <Link href="/contact" onClick={toggleMenu}>
                   Contact Us
