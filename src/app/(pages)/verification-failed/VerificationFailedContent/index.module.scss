@@ -1,0 +1,54 @@
+@import "../../../_css/common";
+
+.verificationFailedContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.verificationFailedContentText {
+  text-align: center;
+}
+
+.resendVerificationButton {
+  margin-top: var(--base);
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.resendVerificationButton:hover {
+  background-color: #27272a;
+}
+
+.loadingSpinnerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.resendWrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.resendEmailInput {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.message {
+  margin-bottom: var(--base);
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+

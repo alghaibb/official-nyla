@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implicit-any-catch */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { CollectionConfig } from 'payload/types'
 

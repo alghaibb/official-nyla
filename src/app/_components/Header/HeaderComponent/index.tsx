@@ -112,7 +112,7 @@ const HeaderComponent = ({ header }: { header: Header }) => {
                 <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                   Twitter
                 </Link>
-                <Link href="/contact" target="_blank" rel="noopener noreferrer">
+                <Link href="/contact" onClick={toggleMenu}>
                   Contact Us
                 </Link>
               </div>

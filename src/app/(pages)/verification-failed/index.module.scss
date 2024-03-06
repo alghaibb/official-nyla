@@ -1,0 +1,27 @@
+@import "../../_css/common";
+
+.verificationFailed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  @include small-break {
+    padding: 0 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.verificationFailedPageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  @include small-break {
+    font-size: 20px;
+  }
+}
+
