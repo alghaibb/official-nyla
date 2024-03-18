@@ -119,7 +119,6 @@ const Users: CollectionConfig = {
           <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
           <style>
               body {
-                  font-family: 'Jost', sans-serif;
                   margin: 0;
                   padding: 0;
                   box-sizing: border-box;
@@ -139,6 +138,7 @@ const Users: CollectionConfig = {
                   font-size: 28px;
                   color: #18181B;
                   margin-bottom: 20px;
+                  text-transform: uppercase;
               }
               .email-content {
                   font-size: 16px;
@@ -148,9 +148,6 @@ const Users: CollectionConfig = {
               .pTags {
                 color: #18181B;
               }
-              .nylaTitle {
-                text-transform: uppercase;
-              }              
               @media (max-width: 600px) {
                   .email-header {
                       font-size: 24px;
@@ -163,12 +160,12 @@ const Users: CollectionConfig = {
         </head>
         <body>
             <div class="email-container">
-                <h1 class="email-header">Welcome to <span class="nylaTitle">Nyla</span></h1>
+                <h1 class="email-header">Nyla</h1>
                 <div class="email-content">
                     <p class="pTags">Hi ${(user as { name: string }).name},</p>
                     <p class="pTags">Click the button below to begin resetting your password</p>
                     <a href="${url}" style="display: inline-block; background-color: #18181B; color: #F4F4F5 !important; padding: 15px 30px; font-size: 16px; border-radius: 10px; text-decoration: none; margin-top: 20px;" class="reset-password-button" target="_blank" rel="noopener noreferrer">Reset Password</a>
-                    <p class="pTags" style="margin-top: 20px;">If you did not sign up for Nyla, you can ignore this email</p>
+                    <p class="pTags" style="margin-top: 20px;">If you did not request this, you can ignore this email</p>
                 </div>
             </div>
         </body>
