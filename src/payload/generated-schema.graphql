@@ -1274,7 +1274,7 @@ type Product {
   title: String
   isNewArrival: Boolean
   publishedOn: DateTime
-  layout: [Product_Layout!]!
+  layout: [Product_Layout!]
   stripeProductID: String
   priceJSON: String
   enablePaywall: Boolean
@@ -4286,7 +4286,7 @@ type ProductVersion_Version {
   title: String
   isNewArrival: Boolean
   publishedOn: DateTime
-  layout: [ProductVersion_Version_Layout!]!
+  layout: [ProductVersion_Version_Layout!]
   stripeProductID: String
   priceJSON: String
   enablePaywall: Boolean
