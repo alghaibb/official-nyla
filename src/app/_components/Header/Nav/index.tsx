@@ -15,9 +15,6 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   const desktopNavLinks = [
     { title: 'Shop', link: '/products' },
     { title: 'New Arrivals', link: '/new-arrivals' },
-    { title: 'Hijabs', link: '/hijabs' },
-    { title: 'Abayas', link: '/abayas' },
-    { title: 'Accessories', link: '/accessories' },
   ]
 
   return (

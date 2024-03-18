@@ -46,9 +46,6 @@ const HeaderComponent = ({ header }: { header: Header }) => {
   const mobileMenuLinks = [
     { title: 'Shop', link: '/products' },
     { title: 'New Arrivals', link: '/new-arrivals' },
-    { title: 'Hijabs', link: '/products/hijabs' },
-    { title: 'Abayas', link: '/products/abayas' },
-    { title: 'Accessories', link: '/products/accessories' },
   ]
 
   return (
