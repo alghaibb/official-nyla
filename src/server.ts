@@ -69,6 +69,25 @@ const start = async (): Promise<void> => {
     }
   })
 
+  app.get('/reset-password', async (req, res) => {
+    const { email } = req.query
+
+    if (!email || typeof email !== 'string') {
+      return res.status(400).send('Email is required.')
+    }
+
+    try {
+      await payload.forgotPassword({
+        collection: 'users',
+        data: {
+          email,
+        },
+      })
+    } catch (error) {
+      console.error('Forgot password error:', error)
+    }
+  })
+
   if (process.env.PAYLOAD_SEED === 'true') {
     await seed(payload)
     process.exit()
