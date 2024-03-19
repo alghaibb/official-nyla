@@ -100,7 +100,7 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }
           </div>
         </div>
     
-        <a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/orders/${doc.id}" class="button" rel="noopener noreferrer" target="_blank">View Your Order</a>
+        <a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/account/orders/${doc.id}" class="button" rel="noopener noreferrer" target="_blank">View Your Order</a>
       </div>
     </body>
     </html>
