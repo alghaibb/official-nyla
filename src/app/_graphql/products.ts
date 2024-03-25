@@ -54,31 +54,3 @@ export const PRODUCT_PAYWALL = `
     }
   }
 `
-
-export const NEW_ARRIVALS = `
-  query NewArrivals {
-    Products(where: { isNewArrival: { equals: true }}, limit: 10) { // Adjust limit as needed
-      docs {
-        id
-        title
-        stripeProductID
-        ${PRODUCT_CATEGORIES}
-        layout {
-          ${CALL_TO_ACTION}
-          ${CONTENT}
-          ${MEDIA_BLOCK}
-          ${ARCHIVE_BLOCK}
-        }
-        priceJSON
-        enablePaywall
-        relatedProducts {
-          id
-          slug
-          title
-          ${META}
-        }
-        ${META}
-      }
-    }
-  }
-`

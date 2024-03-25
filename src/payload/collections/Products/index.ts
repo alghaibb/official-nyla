@@ -46,14 +46,6 @@ const Products: CollectionConfig = {
       required: true,
     },
     {
-      name: 'isNewArrival',
-      label: 'New Arrival',
-      type: 'checkbox',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       name: 'publishedOn',
       type: 'date',
       admin: {
