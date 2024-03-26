@@ -18,13 +18,13 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }
     return
   }
 
-  const formatedItems = doc.items
+  const formattedItems = doc.items
     .map(item => {
       const productName =
         typeof item.product === 'object' ? item.product.title : 'Product name not found'
       const price = (item.price / 100).toFixed(2)
       const quantity = item.quantity
-      return `<div class="order-item">${productName} x ${quantity} <span style="float:right;">$${price}</span></div>`
+      return `<div>${productName} x ${quantity} - $${price}</div>`
     })
     .join('')
 
@@ -33,78 +33,73 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }
   await payload.sendEmail({
     to: recipientEmail,
     from: 'Nyla',
-    subject: 'Order Confirmation',
+    subject: 'Your Order Confirmation - Order #' + doc.id,
     html: `<!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #F4F4F5;
-            color: #18181B;
-          }
-          .email-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            color: #18181B;
-          }
-          a.button {
-            background-color: #18181b; 
-            color: #f4f4f5;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 15px;
-            margin-top: 20px;
-          }
-          .order-summary {
-            text-align: left;
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 4px;
-          }
-          .order-item {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-            margin: 10px 0;
-          }
-          .total-price {
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 10px;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="email-container">
-        <h1>Your Order Confirmation</h1>
-        <p>Thank you for your purchase!</p>
-        <p>We're getting your order ready to be shipped. We will notify you when it has been sent.</p>
-    
-        <div class="order-summary">
-          <h3>Order #${doc.id} Summary</h3>
-          ${formatedItems}
-          <div class="total-price">
-            Total: $${formattedTotal}
-          </div>
-        </div>
-    
-        <a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/account/orders/${doc.id}" class="button" rel="noopener noreferrer" target="_blank">View Your Order</a>
-      </div>
-    </body>
-    </html>
-      `,
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .item {
+      border-bottom: 1px solid #eeeeee;
+      padding: 10px 0;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+    }
+    .button {
+      display: inline-block;
+      background-color: #18181B;
+      color: #F4F4F5;
+      padding: 10px 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .contact {
+      color: #777;
+      text-decoration: underline;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">Thank you for your order <br>Order #${doc.id}!</div>
+    <p>We're excited to let you know that we've received your order. Here are the details:</p>
+    <div>
+      ${formattedItems}
+      <div>Total: $${formattedTotal}</div>
+    </div>
+    <a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/account/orders/${doc.id}" class="button">View Your Order</a>
+    <div class="footer">
+      If you have any questions, you can reply to this email or <a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/contact" class="contact">contact us</a>.
+    </div>
+  </div>
+</body>
+</html>
+    `,
   })
 
   return
