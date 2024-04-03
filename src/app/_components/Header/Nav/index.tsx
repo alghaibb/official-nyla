@@ -12,10 +12,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   const navItems = header?.navItems || []
   const { user } = useAuth()
 
-  const desktopNavLinks = [
-    { title: 'Shop', link: '/products' },
-    { title: 'New Arrivals', link: '/new-arrivals' },
-  ]
+  const desktopNavLinks = [{ title: 'Shop', link: '/products' }]
 
   return (
     <nav className={[classes.nav, user === undefined && classes.hide].filter(Boolean).join(' ')}>

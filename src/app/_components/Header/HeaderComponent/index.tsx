@@ -43,10 +43,7 @@ const HeaderComponent = ({ header }: { header: Header }) => {
   }, [isMenuOpen])
 
   // Mobile menu links
-  const mobileMenuLinks = [
-    { title: 'Shop', link: '/products' },
-    { title: 'New Arrivals', link: '/new-arrivals' },
-  ]
+  const mobileMenuLinks = [{ title: 'Shop', link: '/products' }]
 
   return (
     <>
